@@ -3,9 +3,9 @@ from pyrogram import Client, filters
 from pytgcalls import PyTgCalls
 from pytgcalls.types import MediaStream
 
-API_ID = int(os.getenv("API_ID"))
-API_HASH = os.getenv("API_HASH")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+API_ID = int(os.getenv("31190682"))
+API_HASH = os.getenv( 69db130b89676fa8ed782575a8970bf2)
+BOT_TOKEN = os.getenv(8982542199:AAElH4L-hEH875Vjj5pVqr1HudC0GOM5QnM)
 
 app = Client(
     "music_bot",
@@ -17,7 +17,7 @@ app = Client(
 call = PyTgCalls(app)
 
 
-@app.on_message(filters.command("start"))
+@app.on_message(filters.command(python bot.py))
 async def start(client, message):
     await message.reply_text(
         "🎵 Music Bot is online!\n\n"
