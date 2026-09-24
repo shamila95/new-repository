@@ -3,9 +3,9 @@ from pyrogram import Client, filters
 from pytgcalls import PyTgCalls
 from pytgcalls.types import MediaStream
 
-API_ID = int(os.getenv("31190682"))
-API_HASH = os.getenv( 69db130b89676fa8ed782575a8970bf2)
-BOT_TOKEN = os.getenv(8982542199:AAElH4L-hEH875Vjj5pVqr1HudC0GOM5QnM)
+API_ID = int(os.getenv31190682
+API_HASH = os.getenv69db130b89676fa8ed782575a8970bf2
+BOT_TOKEN = os.getenv8982542199:AAElH4L-hEH875Vjj5pVqr1HudC0GOM5QnM
 
 app = Client(
     "music_bot",
