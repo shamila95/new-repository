@@ -1,5 +1,10 @@
 import os
 import asyncio
+import pyrogram.errors
+
+# PyTgCalls compatibility fix
+if not hasattr(pyrogram.errors, "GroupcallForbidden"):
+    pyrogram.errors.GroupcallForbidden = pyrogram.errors.GroupCallForbidden
 
 from pyrogram import Client, filters
 from pytgcalls import PyTgCalls
@@ -49,21 +54,19 @@ async def get_audio(query):
 async def play_music(client, message):
 
     if len(message.command) < 2:
-        await message.reply_text(
-            "🎵 `/play song name` භාවිතා කරන්න."
-        )
+        await message.reply_text("🎵 `/play song name`")
         return
 
     query = " ".join(message.command[1:])
 
     await message.reply_text(
-        f"🔎 සින්දුව හොයනවා...\n\n🎵 {query}"
+        f"🔎 සින්දුව හොයනවා...\n🎵 {query}"
     )
 
     try:
         audio_file = await get_audio(query)
 
-        await call_py.join_group_call(
+        await call_py.play(
             message.chat.id,
             MediaStream(audio_file)
         )
@@ -82,12 +85,12 @@ async def play_music(client, message):
 async def stop_music(client, message):
 
     try:
-        await call_py.leave_group_call(message.chat.id)
+        await call_py.leave_call(message.chat.id)
         await message.reply_text("⏹ Music stopped.")
 
-    except Exception:
+    except Exception as e:
         await message.reply_text(
-            "❌ Voice chat එකේ music play වෙන්නේ නැහැ."
+            f"❌ Stop කරන්න බැරි වුණා.\n\n{e}"
         )
 
 
