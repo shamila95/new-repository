@@ -63,10 +63,8 @@ async def play_music(client, message):
     try:
         audio_file = await get_audio(query)
 
-        chat_id = message.chat.id
-
         await call_py.join_group_call(
-            chat_id,
+            message.chat.id,
             MediaStream(audio_file)
         )
 
@@ -76,7 +74,7 @@ async def play_music(client, message):
 
     except Exception as e:
         await message.reply_text(
-            f"❌ Play කරන්න බැරි වුණා.\n\n`{e}`"
+            f"❌ Play කරන්න බැරි වුණා.\n\n{e}"
         )
 
 
@@ -85,10 +83,7 @@ async def stop_music(client, message):
 
     try:
         await call_py.leave_group_call(message.chat.id)
-
-        await message.reply_text(
-            "⏹ Music stopped."
-        )
+        await message.reply_text("⏹ Music stopped.")
 
     except Exception:
         await message.reply_text(
